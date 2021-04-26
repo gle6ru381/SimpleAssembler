@@ -120,10 +120,14 @@ Command* satParse(char* str)
         continue;
     }
 
-    retVal = getNum(str + retVal, &operand);
-    if (retVal == -1) {
-        fprintf(stderr, "Неверный операнд\n");
-        return NULL;
+    if (command != 43) {
+        retVal = getNum(str + retVal, &operand);
+        if (retVal == -1) {
+            fprintf(stderr, "Неверный операнд\n");
+            return NULL;
+        }
+    } else {
+        operand = 0;
     }
 
     return newCommand(memNum, command, operand);
